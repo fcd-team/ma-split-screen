@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<head>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous">
+    </script>
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Work+Sans');
+
+      body{
+        background: lightgrey;
+        margin: 0;
+        padding: 0;
+        font-family: "Work Sans";
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .main-wrapper{
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        outline: 1px solid red;
+        background: blue;
+        position: relative;
+      }
+      .logo{
+        height: 100px;
+        width: 300px;
+        left: calc(50vw - 150px);
+        top: calc(50vh - 50px);
+        position: absolute;
+        background-color: white;
+        box-shadow: 1px 1px 10px rgba(0,0,0,.5);
+        background-image: url(logo-transparency.png);
+        background-size: 80% auto;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: all .8s;
+      }
+      .logo-public-active{
+        left: calc(30vw - 150px);
+      }
+      .logo-private-active{
+        left: calc(70vw - 150px);
+      }
+      .private-wrapper{
+        position: absolute;
+        top: 0;
+        left: -5vw;
+        width: 58vw;
+        height: 100vh;
+        background: red;
+        float: left;
+        transform:skewX(-10deg);
+        overflow: hidden;
+        transition: all .8s;
+      }
+      .public-wrapper{
+        position: absolute;
+        top: 0;
+        right: -8vw;
+        width: 58vw;
+        height: 100vh;
+        background: orange;
+        float: left;
+        transform:skewX(-10deg);
+        overflow: hidden;
+        border-left: 3px solid white;
+        transition: all .8s;
+      }
+      .wrapper-active{
+        transform: skewX(0deg);
+      }
+      .public-wrapper-active{
+        width: 70vw;
+        right: 0;
+      }
+      .private-wrapper-active{
+        width: 70vw;
+        left: 0;
+      }
+      .private-wrapper-public-active{
+        width: 30vw;
+        left: 0;
+      }
+      .public-wrapper-private-active{
+        width: 30vw;
+        right: 0;
+      }
+      /*.public-wrapper:hover{
+        z-index: 5;
+        box-shadow: -5px 0 5px rgba(0,0,0,.5);
+      }*/
+      .inner-unskew{
+        width: 100%;
+        height: 100%;
+        background-image: url(gradient-background.jpg);
+        background-size: 100vw auto;
+        transform:skewX(10deg);
+        overflow: auto;
+        transition: all .8s;
+      }
+      .inner-unskew:hover{
+        background-image: url(background.jpg);
+      }
+      .left-img{
+        margin-left: 5vw;
+        background-position: left center;
+      }
+      .right-img{
+        margin-left: -6vw;
+        background-position: right center;
+        padding-left: 5vw;
+      }
+      .inner-unskew-active{
+        transform: skewX(0deg);
+        padding: 0;
+        margin:0;
+      }
+      h1{
+        color: white;
+        font-size: 35px;
+        margin-top: 50px;
+        margin-left: calc(50% - 125px);
+        text-align: center;
+        text-shadow: 2px 2px 3px rgba(0,0,0,.3);
+        float:left;
+        width: 250px;
+        height: 75px;
+        line-height: 75px;
+        border-bottom: 3px solid white;
+      }
+      .icon-container{
+        width: 49vw;
+        padding: 5vw;
+        float: left;
+        margin-left: 3.5vw;
+      }
+      .icon{
+        width: 22vw;
+        height: 15vw;
+        background: white;
+        float: left;
+        margin-right: 2vw;
+        margin-bottom: 30px;
+        box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+        background-image: url(https://github.com/First-Capital-Web-Design/FCRE-builders-2/blob/gh-pages/images/fcre-builders-low-res-blue.png?raw=true);
+        background-size: 80% auto;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      .icon-container-private{
+        display: none;
+      }
+      .icon-container-public{
+        display: none;
+        margin-left: 9.5vw;
+      }
+    </style>
+</head>
+<body>
+  <script>
+
+  $(document).ready(function(){
+    $(".public-wrapper").click(function(){
+      $(".public-wrapper, .private-wrapper").addClass("wrapper-active");
+      $(".private-wrapper").removeClass("private-wrapper-active");
+      $(".public-wrapper").addClass("public-wrapper-active");
+      $(".public-wrapper").removeClass("public-wrapper-private-active");
+      $(".private-wrapper").addClass("private-wrapper-public-active");
+      $(".inner-unskew").addClass("inner-unskew-active");
+      $(".logo").removeClass("logo-private-active");
+      $(".logo").addClass("logo-public-active");
+      $(".icon-container-private").fadeOut(400);
+      $(".icon-container-public").fadeIn(800);
+    });
+    $(".private-wrapper").click(function(){
+      $(".public-wrapper, .private-wrapper").addClass("wrapper-active");
+      $(".public-wrapper").removeClass("public-wrapper-active");
+      $(".private-wrapper").addClass("private-wrapper-active");
+      $(".public-wrapper").addClass("public-wrapper-private-active");
+      $(".private-wrapper").removeClass("private-wrapper-public-active");
+      $(".inner-unskew").addClass("inner-unskew-active");
+      $(".logo").removeClass("logo-public-active");
+      $(".logo").addClass("logo-private-active");
+      $(".icon-container-private").fadeIn(800);
+      $(".icon-container-public").fadeOut(400);
+    });
+    $(".logo").click(function(){
+      $(".public-wrapper, .private-wrapper").removeClass("wrapper-active");
+      $(".public-wrapper").removeClass("public-wrapper-active");
+      $(".public-wrapper").removeClass("public-wrapper-private-active");
+      $(".private-wrapper").removeClass("private-wrapper-active");
+      $(".private-wrapper").removeClass("private-wrapper-public-active");
+      $(".inner-unskew").removeClass("inner-unskew-active");
+      $(".logo").removeClass("logo-public-active");
+      $(".logo").removeClass("logo-private-active");
+      $(".icon-container-private").fadeOut(400);
+      $(".icon-container-public").fadeOut(400);
+
+    });
+  });
+
+  </script>
+
+  <div class="main-wrapper">
+    <div class="private-wrapper"><div class="inner-unskew left-img">
+      <h1>PRIVATE SIDE</h1>
+      <div class="icon-container icon-container-private">
+        <div class="icon"></div>
+        <div class="icon" style="background-image: url(https://github.com/fcd-team/retail-9-16/blob/gh-pages/images/retail-logo.png?raw=true);"></div>
+        <div class="icon" style="background-image: url(http://www.fccommunities.com/images/logo.png);"></div>
+        <div class="icon" style="background-image: url(http://firstcapfunds.com/wp-content/uploads/2015/05/FCRE-Funds-Logo-300x189.png);"></div>
+        <div class="icon" style="background-image: url();"></div>
+        <div class="icon" style="background-image: url();"></div>
+      </div>
+
+    </div></div>
+    <div class="public-wrapper"><div class="inner-unskew right-img">
+      <h1>PUBLIC SIDE</h1>
+      <div class="icon-container icon-container-public">
+        <div class="icon"></div>
+        <div class="icon" style="background-image: url(https://github.com/fcd-team/retail-9-16/blob/gh-pages/images/retail-logo.png?raw=true);"></div>
+        <div class="icon" style="background-image: url(http://www.fccommunities.com/images/logo.png);"></div>
+        <div class="icon" style="background-image: url(http://firstcapfunds.com/wp-content/uploads/2015/05/FCRE-Funds-Logo-300x189.png);"></div>
+        <div class="icon" style="background-image: url();"></div>
+        <div class="icon" style="background-image: url();"></div>
+      </div>
+    </div></div>
+    <div class="logo"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<head>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous">
+    </script>
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Work+Sans');
+
+      body{
+        background: lightgrey;
+        margin: 0;
+        padding: 0;
+        font-family: "Work Sans";
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .main-wrapper{
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        outline: 1px solid red;
+        background: blue;
+        position: relative;
+        background-image: url(gradient-background.jpg);
+        background-size: cover;
+        background-position: center;
+      }
+      .logo{
+        height: 150px;
+        width: 300px;
+        left: calc(50vw - 150px);
+        top: calc(35vh - 50px);
+        position: absolute;
+        background-image: url(fcic-logo-gold.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: all .8s;
+        cursor: pointer;
+      }
+      .logo-public-active{
+        left: calc(15vw - 150px);
+      }
+      .enter{
+        position:absolute;
+        bottom: -40px;
+        left: 103px;
+        color: white;
+        padding: 5px 8px;
+      }
+      .private-wrapper{
+        position: absolute;
+        top: 0;
+        left: -5vw;
+        width: 58vw;
+        height: 100vh;
+        float: left;
+        transform:skewX(-10deg);
+        overflow: hidden;
+        transition: all .8s;
+      }
+      .public-wrapper{
+        position: absolute;
+        top: 0;
+        right: -8vw;
+        width: 58vw;
+        height: 100vh;
+        float: left;
+        transform:skewX(-10deg);
+        overflow: hidden;
+        /*border-left: 3px solid white;*/
+        transition: all .8s;
+      }
+      .wrapper-active{
+        transform: skewX(10deg);
+      }
+      .public-wrapper-active{
+        width: calc(85vw + 90px);
+        background: rgba(0,0,0,.6);
+      }
+      .private-wrapper-active{
+        width: 70vw;
+        left: 0;
+      }
+      .private-wrapper-public-active{
+        width: 30vw;
+        left: 0;
+      }
+      .public-wrapper-private-active{
+        width: 30vw;
+        right: 0;
+      }
+      /*.public-wrapper:hover{
+        z-index: 5;
+        box-shadow: -5px 0 5px rgba(60,60,60,.5);
+      }*/
+      .inner-unskew{
+        width: 100%;
+        height: 100%;
+        transform:skewX(10deg);
+        overflow: auto;
+        transition: all .8s;
+        background-size: 100vw auto;
+      }
+      .inner-unskew:hover{
+      }
+      .left-img{
+        margin-left: 5vw;
+        background-position: left center;
+      }
+      .right-img{
+        margin-left: -6vw;
+        background-position: 115% center;
+        padding-left: 5vw;
+        background-image: url(gradient-background-dark.jpg);
+      }
+      .inner-unskew-active{
+        transform: skewX(-10deg);
+      }
+      h1{
+        color: white;
+        font-size: 35px;
+        margin-top: 50px;
+        margin-left: calc(50% - 125px);
+        text-align: center;
+        text-shadow: 2px 2px 3px rgba(0,0,0,.3);
+        float:left;
+        width: 250px;
+        height: 75px;
+        line-height: 75px;
+        border-bottom: 3px solid white;
+      }
+      .icon-container{
+        width: 49vw;
+        padding: 5vw;
+        float: left;
+        margin-left: 3.5vw;
+        margin-left: 13.5vw;
+        margin-top: 2vh;
+        display: none;
+      }
+      .icon{
+        width: 55vw;
+        height: 15vw;
+        float: left;
+        margin-top: 20px;
+        box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+        background: white;
+        min-width: 700px;
+        min-height: 200px;
+        background: linear-gradient(to right, white, lightgrey);
+      }
+      .icon-info{
+        height: 15vw;
+        width: 75%;
+        float: left;
+        padding: 30px 40px 30px 0;
+        box-sizing: border-box;
+        min-height: 200px;
+        font-size: 16px;
+      }
+      .icon-info p{
+        margin-top: 0;
+        border-left: 2px solid lightgrey;
+        padding-left: 20px;
+        height: 100%;
+      }
+      .thumb{
+        width: 25%;
+        height: 15vw;
+        margin-bottom: 30px;
+        background-image: url(First-Capital-Builders-ver.png);
+        background-size: 80% auto;
+        background-repeat: no-repeat;
+        background-position: center;
+        float: left;
+        min-height: 200px;
+      }
+
+    </style>
+</head>
+<body>
+  <script>
+
+  $(document).ready(function(){
+    $(".logo").click(function(){
+      $(".public-wrapper, .private-wrapper").toggleClass("wrapper-active");
+      $(".private-wrapper").removeClass("private-wrapper-active");
+      $(".public-wrapper").toggleClass("public-wrapper-active");
+      $(".public-wrapper").removeClass("public-wrapper-private-active");
+      $(".private-wrapper").toggleClass("private-wrapper-public-active");
+      $(".inner-unskew").toggleClass("inner-unskew-active");
+      $(".logo").removeClass("logo-private-active");
+      $(".logo").toggleClass("logo-public-active");
+      $(".icon-container").fadeToggle();
+      $(".enter").fadeToggle();
+    });
+
+  });
+
+  </script>
+
+  <div class="main-wrapper">
+    <div class="private-wrapper"><div class="inner-unskew left-img">
+
+
+    </div></div>
+    <div class="public-wrapper"><div class="inner-unskew right-img">
+      <div class="icon-container">
+        <div class="icon"><div class="thumb" style="background-image: url(fcma.png);"></div><div class="icon-info"><p>FC Master Advisor lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nam accumsan libero varius ipsum lobortis aliquet. Quisque laoreet ligula iaculis urna lacinia sodales. Curabitur facilisis, arcu nec placerat blandit, urna purus sollicitudin nisi, sit amet euismod enim nulla eu erat. Duis tempus ac nisi id ullamcorper.</p></div></div>
+        <div class="icon"><div class="thumb" style="background-image: url(fcic.png);"></div><div class="icon-info"><p>FC Investment Corporation lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nam accumsan libero varius ipsum lobortis aliquet. Quisque laoreet ligula iaculis urna lacinia sodales. Curabitur facilisis, arcu nec placerat blandit, urna purus sollicitudin nisi, sit amet euismod enim nulla eu erat. Duis tempus ac nisi id ullamcorper.</p></div></div>
+        <div class="icon"><div class="thumb"></div><div class="icon-info"><p>First Captail Builders lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nam accumsan libero varius ipsum lobortis aliquet. Quisque laoreet ligula iaculis urna lacinia sodales. Curabitur facilisis, arcu nec placerat blandit, urna purus sollicitudin nisi, sit amet euismod enim nulla eu erat. Duis tempus ac nisi id ullamcorper.</p></div></div>
+        <div class="icon"><div class="thumb" style="background-image: url(https://github.com/fcd-team/retail-9-16/blob/gh-pages/images/retail-logo.png?raw=true);"></div><div class="icon-info"><p>First Captail Retails lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nam accumsan libero varius ipsum lobortis aliquet. Quisque laoreet ligula iaculis urna lacinia sodales. Curabitur facilisis, arcu nec placerat blandit, urna purus sollicitudin nisi, sit amet euismod enim nulla eu erat. Duis tempus ac nisi id ullamcorper.</p></div></div>
+        <div class="icon"><div class="thumb" style="background-image: url(http://www.fccommunities.com/images/logo.png);"></div><div class="icon-info"><p>First Captail Communities lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nam accumsan libero varius ipsum lobortis aliquet. Quisque laoreet ligula iaculis urna lacinia sodales. Curabitur facilisis, arcu nec placerat blandit, urna purus sollicitudin nisi, sit amet euismod enim nulla eu erat. Duis tempus ac nisi id ullamcorper.</p></div></div>
+        <div class="icon"><div class="thumb" style="background-image: url(http://firstcapfunds.com/wp-content/uploads/2015/05/FCRE-Funds-Logo-300x189.png);"></div><div class="icon-info"><p>First Captail RE Funds lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nam accumsan libero varius ipsum lobortis aliquet. Quisque laoreet ligula iaculis urna lacinia sodales. Curabitur facilisis, arcu nec placerat blandit, urna purus sollicitudin nisi, sit amet euismod enim nulla eu erat. Duis tempus ac nisi id ullamcorper.</p></div></div>
+        <div class="icon"><div class="thumb" style="background-image: url();"></div><div class="icon-info"><p>First Captail lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nam accumsan libero varius ipsum lobortis aliquet. Quisque laoreet ligula iaculis urna lacinia sodales. Curabitur facilisis, arcu nec placerat blandit, urna purus sollicitudin nisi, sit amet euismod enim nulla eu erat. Duis tempus ac nisi id ullamcorper.</p></div></div>
+        <div class="icon"><div class="thumb" style="background-image: url();"></div><div class="icon-info"><p>First Captail lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Nam accumsan libero varius ipsum lobortis aliquet. Quisque laoreet ligula iaculis urna lacinia sodales. Curabitur facilisis, arcu nec placerat blandit, urna purus sollicitudin nisi, sit amet euismod enim nulla eu erat. Duis tempus ac nisi id ullamcorper.</p></div></div>
+      </div>
+    </div></div>
+    <div class="logo"><div class="enter">Enter Site</div></div>
+  </div>
+</body>
+</html>
